@@ -39,14 +39,15 @@ function viewCart() {
 
 function total() {
   let t = 0;
+
   for (var i = 0; i < cart.length; i++){
       t += cart[i].itemPrice;
   }
+
   return t;
 }
 
 function removeFromCart(item) {
-
 
   for (var i = 0; i < cart.length; i++){
     if (item === cart[i].itemName) {
@@ -61,14 +62,12 @@ function removeFromCart(item) {
 
 }
 function placeOrder(cardNumber) {
-  
-  if (cardNumber) {
-    console.log(cart.splice(0,cart.length));
-    return `Your total cost is $${total()}, which will be charged to the card ${cardNumber}.`;
-    }
-  
-  if (!cardNumber) {
+  if (cardNumber === undefined) {
   return"Sorry, we don't have a credit card on file for you.";
   }
-  
+  else {
+    let cardTotal = total();
+    setCart([]);
+    return `Your total cost is $${cardTotal}, which will be charged to the card ${cardNumber}.`;
+  }
 }
